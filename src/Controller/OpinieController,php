@@ -1,0 +1,37 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Controller;
+
+use App\Repository\OpinieRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Attribute\Route;
+
+#[Route(path: '/api/opinie', name: 'api_opinie')]
+class OpinieController
+{
+    public function __construct(
+        private OpinieRepository $opinieRepository
+    ) {
+    }
+
+    #[Route(path: '/', name: 'opinie_list', methods: ['GET'])]
+    public function getOpinieAction(): JsonResponse
+    {
+        $returnOpinie = [];
+        $opinie = $this->opinieRepository->findAll();
+
+        foreach ($opinie as $opinia) {
+            $returnOpinie[] = [
+                'id' => $opinia->getId(),
+                'user_id' => $opinia->getUserId(),
+                'produkt_id' => $opinia->getProduktId(),
+                'pozytywna' => $opinia->isPozytywna(),
+                'tresc' => $opinia->getTresc(),
+            ];
+        }
+
+        return new JsonResponse($returnOpinie, 200);
+    }
+}

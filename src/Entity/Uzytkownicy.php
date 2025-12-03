@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\UserType;
 use App\Repository\UzytkownicyRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -24,6 +25,9 @@ class Uzytkownicy
 
     #[ORM\Column]
     private ?bool $typeofuser = null;
+
+    #[ORM\Column(enumType: UserType::class, nullable: true)]
+    private ?UserType $usertype = null;
 
     public function getId(): ?int
     {
@@ -74,6 +78,18 @@ class Uzytkownicy
     public function setTypeofuser(bool $typeofuser): static
     {
         $this->typeofuser = $typeofuser;
+
+        return $this;
+    }
+
+    public function getUsertype(): ?UserType
+    {
+        return $this->usertype;
+    }
+
+    public function setUsertype(UserType $usertype): static
+    {
+        $this->usertype = $usertype;
 
         return $this;
     }

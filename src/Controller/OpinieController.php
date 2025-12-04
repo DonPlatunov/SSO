@@ -7,9 +7,10 @@ namespace App\Controller;
 use App\Repository\OpinieRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route(path: '/api/opinie', name: 'api_opinie')]
-class OpinieController
+class OpinieController extends AbstractController
 {
     public function __construct(
         private OpinieRepository $opinieRepository

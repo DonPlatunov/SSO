@@ -94,19 +94,19 @@ for ($i = 1; $i <= 10; $i++) {
     $manager->persist($zamowienie);
 }
         //CenaProduktu
-       
 for ($i = 1; $i <= 10; $i++) {
     $cena = new CenaProduktu();
 
-    
     $cena->setProduktId(rand(1, 5));  
     $cena->setWalutaId(rand(1, 3));  
-
-   
     $cena->setKwota(rand(10, 500));
+
+    // Ustawienie wymaganej kolumny NOT NULL
+    $cena->setCenaProduktuId('SKU' . $i);  
 
     $manager->persist($cena);
 }
+
         //Waluta
         $walutyData = [
     ['kod_iso' => 'PLN', 'name' => 'Polski złoty'],

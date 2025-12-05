@@ -7,9 +7,10 @@ namespace App\Controller;
 use App\Repository\ProduktyRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route(path: '/api/produkty', name: 'api_produkty')]
-class ProduktyController
+class ProduktyController extends AbstractController
 {
     public function __construct(
         private ProduktyRepository $produktyRepository

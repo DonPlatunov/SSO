@@ -112,4 +112,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // @deprecated, to be removed when upgrading to Symfony 8
     }
+    public function toArray(): array
+    {
+    return [
+        'id' => $this->getId(),
+        'email' => $this->getEmail(),
+        'roles' => $this->getRoles(),
+       
+    ];
+    }
+
+
+
+
 }
